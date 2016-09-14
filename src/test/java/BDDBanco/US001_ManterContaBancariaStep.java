@@ -12,73 +12,52 @@ import cucumber.api.java.pt.Quando;
 
 public class US001_ManterContaBancariaStep {
 
-	private Banco banco;
+  private Conta  conta;
 
-	private Conta conta;
+  private String nomeCliente;
 
-	private String nomeCliente;
+  @Dado("^as informações do cliente$")
+  public void as_informações_do_cliente(Map<String, String> valores) throws Throwable {
+    conta = new ContaCorrente();
+    conta.aberturaDeConta(valores);
+  }
 
-	private long deposito;
+  @Quando("^cadastrar a conta do cliente no Banco BDD$")
+  public void cadastrar_a_conta_do_cliente_no_Banco_BDD() throws Throwable {
+    Banco.getInstance().addNovaConta(conta);
+  }
 
-	@Dado("^que existe um Banco BDD$")
-	public void que_existe_um_Banco_BDD() throws Throwable {
-		banco = Banco.getInstance();
-	}
+  @Entao("^devo receber um número de agência$")
+  public void devo_receber_um_número_de_agência() throws Throwable {
+    String agencia = Banco.getInstance().getContaOperante().getAgencia();
+    Assert.assertFalse(agencia.isEmpty());
+  }
 
-	@Dado("^as informações do cliente$")
-	public void as_informações_do_cliente(Map<String, String> valores)
-			throws Throwable {
-		conta = new ContaCorrente();
-		conta.aberturaDeConta(valores);
-	}
+  @Entao("^um número da conta$")
+  public void um_número_da_conta() throws Throwable {
+    String conta = Banco.getInstance().getContaOperante().getConta();
+    Assert.assertFalse(conta.isEmpty());
+  }
 
-	@Quando("^cadastrar a conta do cliente no Banco BDD$")
-	public void cadastrar_a_conta_do_cliente_no_Banco_BDD() throws Throwable {
-		banco.addNovaConta(conta);
-	}
+  @Dado("^um nome de um cliente \"([^\"]*)\"$")
+  public void um_nome_de_um_cliente(String nomeCliente) throws Throwable {
+    this.nomeCliente = nomeCliente;
+  }
 
-	@Entao("^devo receber um número de agência$")
-	public void devo_receber_um_número_de_agência() throws Throwable {
-		String agencia = banco.getContaOperante().getAgencia();
-		Assert.assertFalse(agencia.isEmpty());
-	}
+  @Quando("^buscar a conta$")
+  public void buscar_a_conta() throws Throwable {
+    conta = Banco.getInstance().buscarClientePeloNome(this.nomeCliente);
+  }
 
-	@Entao("^um número da conta$")
-	public void um_número_da_conta() throws Throwable {
-		String conta = banco.getContaOperante().getConta();
-		Assert.assertFalse(conta.isEmpty());
-	}
+  @Então("^devo receber um número válido$")
+  public void devo_receber_um_número_válido() throws Throwable {
+    Assert.assertTrue(Banco.getInstance().getContaOperante().getConta() != null);
+  }
 
-	@Dado("^um nome de um cliente \"([^\"]*)\"$")
-	public void um_nome_de_um_cliente(String nomeCliente) throws Throwable {
-		this.nomeCliente = nomeCliente;
-	}
+  @Então("^devo receber um comprovante$")
+  public void devo_receber_um_comprovante() throws Throwable {
+    Assert.assertTrue(new File("comprovanteDeposito").exists());
 
-	@Quando("^buscar a conta$")
-	public void buscar_a_conta() throws Throwable {
-		conta = banco.buscarClientePeloNome(this.nomeCliente);
-	}
-
-	@Então("^devo receber um número válido$")
-	public void devo_receber_um_número_válido() throws Throwable {
-		Assert.assertTrue(banco.getContaOperante().getConta() != null);
-	}
-
-	@Dado("^um valor para deposito (\\d+)$")
-	public void um_valor_para_deposito(long deposito) throws Throwable {
-		this.deposito = deposito;
-	}
-
-	@Quando("^depositar o valor$")
-	public void depositar_o_valor() throws Throwable {
-		banco.depositarValor(conta, deposito);
-	}
-
-	@Então("^devo receber um comprovante$")
-	public void devo_receber_um_comprovante() throws Throwable {
-		Assert.assertTrue(new File("comprovanteDeposito").exists());
-
-	}
-
+  }
 
 }

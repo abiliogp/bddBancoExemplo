@@ -3,9 +3,6 @@ Funcionalidade: Gerenciamento de conta básica
   Como um correntista do Banco BDD
   Com o objetivo de criar e gerenciar uma conta
 
-  Contexto: 
-    Dado que existe um Banco BDD
-
   Cenário: Criar uma nova conta no Banco BDD
     Dado as informações do cliente
       | nome       | Johnny Cash    |

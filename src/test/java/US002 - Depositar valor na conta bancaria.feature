@@ -5,7 +5,7 @@ Funcionalidade: Depositar valor na conta bancaria
   Para ter um saldo disponivel na minha conta
 
 Contexto: 
-    Dado que existe um Banco BDD
+    Dado um cliente com nome de "Johnny Cash"
 
 
   Cenário: Depositar um valor na conta
