@@ -3,18 +3,14 @@ package BDDBanco;
 import java.io.File;
 import java.util.Map;
 
-import org.junit.AfterClass;
 import org.junit.Assert;
-import org.junit.BeforeClass;
 
-import cucumber.api.java.After;
-import cucumber.api.java.Before;
 import cucumber.api.java.pt.Dado;
 import cucumber.api.java.pt.Entao;
 import cucumber.api.java.pt.Então;
 import cucumber.api.java.pt.Quando;
 
-public class ContaBasicaStep {
+public class US001_ManterContaBancariaStep {
 
 	private Banco banco;
 
@@ -24,15 +20,15 @@ public class ContaBasicaStep {
 
 	private long deposito;
 
-	@Dado("^um operador de contas básica$")
-	public void um_operador_de_contas_básica() throws Throwable {
+	@Dado("^que existe um Banco BDD$")
+	public void que_existe_um_Banco_BDD() throws Throwable {
 		banco = Banco.getInstance();
 	}
 
 	@Dado("^as informações do cliente$")
 	public void as_informações_do_cliente(Map<String, String> valores)
 			throws Throwable {
-		conta = new ContaBasica();
+		conta = new ContaCorrente();
 		conta.aberturaDeConta(valores);
 	}
 

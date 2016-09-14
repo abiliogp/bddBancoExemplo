@@ -1,2 +1,2 @@
 # bddBancoExemplo
-Exemplo utilizado no Evento GUAN em 18/07/16
+Exemplo utilizado no IFRS em 15/09/16

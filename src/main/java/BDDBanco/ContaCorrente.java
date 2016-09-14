@@ -2,7 +2,7 @@ package BDDBanco;
 
 import java.util.Map;
 
-public class ContaBasica implements Conta {
+public class ContaCorrente implements Conta {
 
 	private Cliente cliente;
 
@@ -12,7 +12,7 @@ public class ContaBasica implements Conta {
 
 	private long saldo = 0;
 
-	public ContaBasica() {
+	public ContaCorrente() {
 		this.cliente = new Cliente();
 		conta++;
 	}

@@ -4,7 +4,7 @@ Funcionalidade: Gerenciamento de conta básica
   Com o objetivo de criar e gerenciar uma conta
 
   Contexto: 
-    Dado um operador de contas básica
+    Dado que existe um Banco BDD
 
   Cenário: Criar uma nova conta no Banco BDD
     Dado as informações do cliente
@@ -22,13 +22,5 @@ Funcionalidade: Gerenciamento de conta básica
     Dado um nome de um cliente "Johnny Cash"
     Quando buscar a conta
     Então devo receber um número válido
-
-  Cenário: Depositar um valor na conta
-    Dado um nome de um cliente "Johnny Cash"
-    E um valor para deposito 1000
-    Quando buscar a conta
-    E depositar o valor
-    Então devo receber um comprovante
-
 
   
