@@ -19,5 +19,3 @@ Funcionalidade: Gerenciamento de conta básica
     Dado um nome de um cliente "Johnny Cash"
     Quando buscar a conta
     Então devo receber um número válido
-
-  

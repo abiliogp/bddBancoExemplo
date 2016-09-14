@@ -4,9 +4,8 @@ Funcionalidade: Depositar valor na conta bancaria
   Eu quero depositar um valor
   Para ter um saldo disponivel na minha conta
 
-Contexto: 
+  Contexto: 
     Dado um cliente com nome de "Johnny Cash"
-
 
   Cenário: Depositar um valor na conta
     Dado um nome de um cliente "Johnny Cash"
@@ -14,4 +13,3 @@ Contexto:
     Quando depositar o valor
     Então devo receber um comprovante
     E o saldo da conta deve aumentar em 1000 reais
-
